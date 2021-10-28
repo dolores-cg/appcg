@@ -11,7 +11,7 @@ const ItemCount = () => {
         
     }
     if (contador < 0){
-         setContador(contador>=0)   
+         setContador(contador===0)   
     }
     return (
         <>

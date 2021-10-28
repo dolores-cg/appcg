@@ -9,7 +9,7 @@ const App = () => {
     <>
     <div className="container">
         <Header/>
-        <ItemListContainer msj="Bienvenidx a mi sitio!"/>
+        <ItemListContainer msj="Hola!"/>
         <ItemCount/>
         <Footer/>
     </div>

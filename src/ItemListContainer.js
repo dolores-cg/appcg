@@ -1,8 +1,11 @@
+import ItemList from "./ItemList"
+
 const ItemListContainer = (props) => {
     console.log(props)
     return (
         <div>
-            <p>{props.msj}</p>
+            <h1>{props.msj}</h1>
+            <ItemList/>
         </div>
     )
 }

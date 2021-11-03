@@ -1,4 +1,5 @@
-import ItemCount from "./ItemCount"
+import { BrowserRouter,Route } from "react-router-dom"
+import ItemDetailContainer from "./ItemDetailContainer"
 import Header from "./Header"
 import ItemListContainer from "./ItemListContainer"
 import Footer from "./Footer"
@@ -6,14 +7,14 @@ import Footer from "./Footer"
 const App = () => {
    
     return (
-    <>
+    <BrowserRouter>
     <div className="container">
         <Header/>
-        <ItemListContainer msj="Hola!"/>
-        <ItemCount/>
+        <Route path= "/" component={ItemListContainer} exact/>
+        <Route path="/categoria/:id" component={ItemListContainer}/>
         <Footer/>
     </div>
-    </>
+    </BrowserRouter>
     )    
 }
 

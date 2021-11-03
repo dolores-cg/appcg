@@ -3,7 +3,7 @@ const CartWidget = () => {
         <div>
             <span className="material-icons">
                 shopping_cart
-            </span>     
+            </span>
         </div>
     )
 }

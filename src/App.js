@@ -1,8 +1,7 @@
 import { BrowserRouter,Route } from "react-router-dom"
-import ItemDetailContainer from "./ItemDetailContainer"
 import Header from "./Header"
 import ItemListContainer from "./ItemListContainer"
-import Footer from "./Footer"
+import ItemDetailContainer from "./ItemDetailContainer"
 
 const App = () => {
    
@@ -12,8 +11,8 @@ const App = () => {
         <Header/>
         <Route path= "/" component={ItemListContainer} exact/>
         <Route path="/categoria/:id" component={ItemListContainer}/>
-        <Footer/>
-    </div>
+        <Route path= "/producto" component={ItemDetailContainer}/>
+        </div>
     </BrowserRouter>
     )    
 }

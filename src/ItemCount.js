@@ -20,7 +20,7 @@ const ItemCount = () => {
         <button onClick={restar}>-</button>  
         <p>{contador}</p>
         <button onClick={sumar}>+</button>
-        <Link to="/producto">Ver producto</Link>  
+        <Link to="/item/:id">Ver producto</Link>  
         </>
     )
 }

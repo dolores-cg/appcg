@@ -11,7 +11,7 @@ const App = () => {
         <Header/>
         <Route path= "/" component={ItemListContainer} exact/>
         <Route path="/categoria/:id" component={ItemListContainer}/>
-        <Route path= "/producto" component={ItemDetailContainer}/>
+        <Route path= "/item/:id" component={ItemDetailContainer}/>
         </div>
     </BrowserRouter>
     )    

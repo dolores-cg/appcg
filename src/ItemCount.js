@@ -1,7 +1,7 @@
 import {useState} from "react"
-import {Link} from 'react-router-dom'
 
-const ItemCount = () => {
+
+const ItemCount = ({onClick}) => {
 
     const [contador,setContador] = useState(0)
     const sumar = () => {
@@ -20,7 +20,7 @@ const ItemCount = () => {
         <button onClick={restar}>-</button>  
         <p>{contador}</p>
         <button onClick={sumar}>+</button>
-        <Link to="/item/:id">Ver producto</Link>  
+        
         </>
     )
 }

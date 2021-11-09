@@ -1,5 +1,6 @@
 import './styles/itemList.css'
-import Counter from './ItemCount';
+import {Link} from 'react-router-dom'
+
  
 
 const ItemList = ({ product }) => {
@@ -9,7 +10,7 @@ const ItemList = ({ product }) => {
             <img src={product.img} alt="" />
             <h3>{product.name}</h3>
             <span>${product.price}</span>
-            <Counter sinStock="0" stock ={product.stock} />
+            <Link to="/item/:id">Ver producto</Link>
         </div>
     
   );

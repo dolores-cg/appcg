@@ -1,8 +1,10 @@
 import {Link} from 'react-router-dom'
+import { contexto } from './CartContext'
 import './styles/NavBar.css'
 import CartWidget from "./CartWidget"
 
 const NavBar = () => {
+    
     return (
         <nav>
             <nav className="NavBar">

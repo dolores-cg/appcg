@@ -2,17 +2,21 @@ import React from 'react'
 import ItemCount from './ItemCount';
 import { useContext } from 'react';
 import { contexto } from './CartContext';
+import {useHistory} from 'react-router-dom' 
 
 export const ItemDetail = ({ item }) => {
 
+    const {push} = useHistory()
     const {addToCart} = useContext(contexto)
 
     const onAdd = (cantidad) => {
-        console.log ("Seleccionaron la cantidad")
-        console.log (cantidad, item)
         addToCart(item, cantidad)
     }
 
+    const redireccionar = () => {
+        push ("/cart")
+    } 
+    
     return (
         <div className="row justify-content-center">
             <div className="m-3">
@@ -28,6 +32,7 @@ export const ItemDetail = ({ item }) => {
                                 <p >{ item.data.description }</p>
                                 <p >$ { item.data.price }</p>
                                 <ItemCount onAdd={onAdd}/>
+                                {<button onClick={redireccionar}>ver carrito</button>}
                                 
                             </div>
                         </div>

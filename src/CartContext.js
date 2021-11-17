@@ -1,25 +1,55 @@
-import { createContext, useState } from "react"
+import { createContext, useState } from 'react';
 
-export const contexto = createContext ()
+export const contexto = createContext();
+export const CustomComponent = ({ children }) => {
+	const [cart, setCart] = useState([]);
+	// console.log('cart', cart);
+	const updateItemsInCart = (item, num) => {
+		item.stock = item.stock + num;
+	};
+	const addItem = (item, quantity) => {
+		const isInCart = cart.some((product) => product.id === item.id);
+		if (item.stock >= 0) {
+			if (!isInCart) {
+				item.stock = item.stock - quantity;
+				const newItem = {
+					...item,
+					stock: item.stock,
+					counter: quantity,
+				};
 
-const {Provider, Consumer} = contexto
+				setCart([...cart, newItem]);
+			} else {
+				const foundedItem = cart.find(
+					(product) => product.id === item.id
+				);
+				foundedItem.counter = foundedItem.counter + quantity;
+				foundedItem.stock = foundedItem.stock - quantity;
+				setCart([...cart]);
+			}
+		}
+	};
 
-const CustomComponent = ({children}) => {
-    const [cart, setCart] = useState([])
-    const addToCart = (product, cantidad) => {
-        console.log ("Soy el contexto")
-        console.log(product, cantidad)
+	const removeItem = (id) => {
+		//Filtro todos los que no coinciden con el id, eliminando el del id correspondiente
+		// const findedItem = cart.find((item) => (item.id = id));
+		// findedItem.stock = findedItem.stock + findedItem.count;
+		// setCart([...cart]);
+		setCart(cart.filter((item) => item.id !== id));
+	};
 
-    }
-    const valorDelContexto = {
-        cart : cart,
-        addToCart : addToCart
-    }
-    return (
-        <Provider value={valorDelContexto}>
-                {children}
-        </Provider>
-    )
-}
+	const emptyCart = () => {
+		//Vacio el array cart
+		setCart([]);
+	};
+
+	return (
+		<contexto.Provider
+			value={{ cart, addItem, removeItem, emptyCart, updateItemsInCart }}
+		>
+			{children}
+		</contexto.Provider>
+	);
+};
 
 export default CustomComponent

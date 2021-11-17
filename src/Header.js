@@ -8,6 +8,7 @@ const Header = () => {
             <h1>Tienda CARP</h1>
             </NavLink>
             <NavBar/>
+           
                  
         </header>
     )

@@ -1,37 +1,42 @@
 import React, { useState, useEffect } from 'react'
 import { ItemDetail } from './ItemDetail';
+import { useParams } from "react-router-dom"
 import './styles/itemDetail.css'
+import {firestore} from "./firebase"
 
-
-const itemToDetail = {
-        id: '1',
-        name: 'Camiseta ',
-        description: 'Equipo: River',
-        price: 7500,
-        img: "https://www.digitalsport.com.ar/files/products/5d2cbd5d7c02c-479340-1200x1200.jpg"     
-}
-
-const itemToDetailPromise = new Promise((resolve, reject) => {
-    setTimeout(function() {
-        resolve(itemToDetail);
-    }, 2000);
-});
 
 const ItemDetailContainer = () => {
 
-    const[item, setItem] = useState({
-        data: {},
-        loading: true
-    });
+    const[item, setItem] = useState({});
+    const {id} = useParams();
 
-    useEffect( () => {
-        itemToDetailPromise.then( data => {
-            setItem({
-                data: data,
-                loading: false
-            });
-        });
-    }, []);
+
+    useEffect(() => {
+
+         //1) Necesito una referencia a la base de datos
+         const db = firestore
+
+         //2) Necesito una coleccion
+         const collection = db.collection("productos")
+ 
+         //3) Hago la consulta
+         //const promesa = collection.get()
+         const query = collection.doc(id)
+ 
+         //4) Obtengo resultados
+         const promesa = query.get()
+ 
+         promesa
+             .then((documento)=>{
+                 console.log("Consulta exitosa")
+                 const data = documento.data()
+                 setItem(data)
+             })
+             .catch(()=>{
+                 console.log("Hubo un error")
+             })
+ 
+     }, [id]);
 
     return (
         <div>
